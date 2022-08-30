@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8362021334471133338}
-  - component: {fileID: 8362021334471133341}
-  - component: {fileID: 8362021334471133340}
   - component: {fileID: 6110727490618647515}
+  - component: {fileID: 8362021334471133340}
+  - component: {fileID: 8362021334471133341}
   - component: {fileID: 8362021334471133343}
   m_Layer: 0
   m_Name: Player
@@ -37,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8362021334471133341
+--- !u!114 &6110727490618647515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,22 +46,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8362021334471133342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bdd45faf8c13f240aa8fdacf1887334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectInterest: 0
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 0
-  AoiPositionSource: {fileID: 0}
-  Flags: 2305
-  NetworkGuid:
-    RawGuidValue: 00fadc4245e220c4682f36501c9f701a
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 8362021334471133340}
-  - {fileID: 6110727490618647515}
-  SimulationBehaviours: []
+  _interpolationDataSource: 0
+  ballPrefab: {fileID: 305829046010126560, guid: b5af0c8dfa2d2d347bc38452cb620d98, type: 3}
 --- !u!114 &8362021334471133340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +85,7 @@ MonoBehaviour:
   rotationSpeed: 15
   _IsGrounded: 0
   _Velocity: {x: 0, y: 0, z: 0}
---- !u!114 &6110727490618647515
+--- !u!114 &8362021334471133341
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,10 +94,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 8362021334471133342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bdd45faf8c13f240aa8fdacf1887334, type: 3}
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
+  ObjectInterest: 0
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 0
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: 00fadc4245e220c4682f36501c9f701a
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 6110727490618647515}
+  - {fileID: 8362021334471133340}
+  SimulationBehaviours: []
 --- !u!143 &8362021334471133343
 CharacterController:
   m_ObjectHideFlags: 0

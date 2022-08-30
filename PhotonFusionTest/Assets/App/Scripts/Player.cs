@@ -1,20 +1,46 @@
 using Fusion;
+using UnityEngine;
 
 public class Player : NetworkBehaviour
 {
-	private NetworkCharacterControllerPrototype _cc;
+	[SerializeField] private Ball ballPrefab;
+	[Networked] private TickTimer delay { get; set; }
+	
+	private Vector3 forwardVector;
 
-	private void Awake()
+
+	private NetworkCharacterControllerPrototype networkCharacterController;
+
+	private void Awake ()
 	{
-		_cc = GetComponent<NetworkCharacterControllerPrototype>();
+		networkCharacterController = GetComponent<NetworkCharacterControllerPrototype> ();
+		forwardVector = transform.forward;
 	}
 
-	public override void FixedUpdateNetwork()
+	public override void FixedUpdateNetwork ()
 	{
-		if (GetInput(out NetworkInputData data))
+		if (GetInput (out NetworkInputData data))
 		{
-			data.direction.Normalize();
-			_cc.Move(5*data.direction*Runner.DeltaTime);
+			data.direction.Normalize ();
+			networkCharacterController.Move (5 * data.direction * Runner.DeltaTime);
+
+			if (data.direction.sqrMagnitude > 0)
+			{
+				forwardVector = data.direction;
+			}
+
+			if (delay.ExpiredOrNotRunning (Runner))
+			{
+				if ((data.buttons & NetworkInputData.MOUSEBUTTON1) != 0)
+				{
+					delay = TickTimer.CreateFromSeconds(Runner, 0.5f);
+					Runner.Spawn (ballPrefab, transform.position + forwardVector, Quaternion.LookRotation (forwardVector), Object.InputAuthority,(runner, obj) =>
+					{
+						// Initialize the Ball before synchronizing it
+						obj.GetComponent<Ball>().Init();
+					});
+				}
+			}
 		}
 	}
 }
